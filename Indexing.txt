@@ -7,7 +7,7 @@ use emp
 
 show collections
 
-db.data.find({user_id:9755})
+db.data.find({user_id:100})
 
 * we can create an index on the table/collection to retrieve the results faster
 
@@ -23,7 +23,7 @@ db.data.count()
 * let's explore what is going on when you execute this find result command
 "db.data.find({user_id:9755})"
 
-db.data.explain().find({user_id:9755})
+db.data.explain().find({user_id:100})
 
 -stage" : "COLLSCAN", it is scaning the all the fields and finding the record
 
