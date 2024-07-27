@@ -6,7 +6,7 @@ from pyspark.sql import functions
 
 #function creation for applying scheema
 def parseInput(line):
-    fields = line.split(',')
+    fields = line.split('|')
     return Row(user_id = int(fields[0]), age = int(fields[1]), gender = fields[2], occupation = fields[3], zip = fields[4])
 
 if __name__ == "__main__":
@@ -16,7 +16,7 @@ if __name__ == "__main__":
     getOrCreate()
 
     # Build RDD on top of emp data file
-    lines = spark.sparkContext.textFile("hdfs:///user/maria_dev/mongodb/emp.txt")
+    lines = spark.sparkContext.textFile("hdfs:///user/maria_dev/employee.txt")
     
     # Creating new RDD by passing the parser fuction
     users = lines.map(parseInput)
