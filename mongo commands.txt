@@ -5,7 +5,7 @@ Database Commands:
 
 1. Show Databases:
 
-show databasesuse
+show databases
 
 2. Switch Database:
 
@@ -20,50 +20,31 @@ show collections
 
 use <new_database_name>
 
-use database1
-
 Collection Commands:
 
 1.Insert Document:
 
 db.<collection_name>.insert({ key: "value" })
 
-db.collection1.insert({ user_id: 123 })
-db.collection1.insert({ user_id: 456 })
-db.collection1.insert({ user_id: 789 })
-
 2.Find Documents:
 
 db.<collection_name>.find()
-
-db.collection1.find()
 
 3.Query with Filter:
 
 db.<collection_name>.find({ key: "value" })
 
-db.collection1.find({ user_id: "456" })
-
 4.Update Document:
 
 db.<collection_name>.update({ key: "value" }, { $set: { new_key: "new_value" } })
-
-db.collection1.update({ user_id: 456 }, { $set: { user_id: "010" } })
 
 5.Delete Document:
 
 db.<collection_name>.remove({ key: "value" })
 
-db.collection1.remove({ user_id: "010" })
-
 6.Drop Collection:
 
 db.<collection_name>.drop()
-
-db.collection1.drop()
-
-show collections
-
 
 7.Indexing:
 
