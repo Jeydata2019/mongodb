@@ -1,0 +1,124 @@
+
+Step:1
+--log in with root account
+
+su root
+
+default password = hadoop
+
+Step:2 
+-- we need to download connector which connects Ambari and Mongodb(one developer already made that connector
+we can simply get that connector from his git account. we will use git clone to
+replicate that connector in our hdb sandbox)
+
+--go to the right path for clonning
+
+1. 
+cd /var/lib/ambari-server/resources/stacks
+
+2.
+ls
+
+3.
+-go to HDP>
+cd HDP
+
+4.
+-go to 2.6 version
+cd 2.6
+
+5.
+ls
+
+6.
+go to services>
+
+7.
+ls
+
+other wise you can directly go to services directory using following command:
+
+cd /var/lib/ambari-server/resources/stacks/HDP/2.6/services
+
+Step3:
+--clone the git page using below command:
+
+git clone https://github.com/nikunjness/mongo-ambari.git
+
+Step4:
+--restart ambari server
+
+ambari-server restart
+
+
+------------------------------------------------------------------------------------------------------------------
+Got to Ambari and set up MongoDB:
+
+user name : admin
+password : admin
+
+if admin password is not working reset the admin user's password using below command
+
+
+su root
+ambari-admin-password-reset
+
+Got to Ambari and set up MongoDB:
+
+user name : admin
+password : admin
+
+Actions>click Add service>choose MongoDB 3.2 click the check box>click next>
+click next>click next>click next>click ok>click proceed Anyway>Click Deploy>after install,start and test completed 100%>click Next>Clcik on complete>click mongo db verify 
+------------------------------------------------------------------------------------------------------------------
+
+We will use pyspark script to load data into mongo db :
+next step to install pymongo to work with python:
+
+*log into putty:
+*log in as root account
+su root
+* go the service path
+cd /var/lib/ambari-server/resources/stacks/HDP/2.6/services
+ls 
+pip install pymongo==3.4.0
+
+Note if you are gettinag an error no command found pip excute below command to insatll pip first
+
+
+*Download the correct script for Pyton 2.7
+
+wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+
+*Install 'pip' Python 2.7
+
+python get-pip.py
+
+*verify 'pip' installation for Python 2.7
+
+pip --version
+
+if you can see the pip version now execute below command (pip-20.3.4 from /usr/lib2.7/site-packages/pip (python 2.7)
+
+pip install pymongo==3.4.0
+
+*type "mongo" to go into mongo cell 
+mongo
+
+
+*simply type show dbs to see the databases:
+show dbs;
+
+*use db name to switch db
+use local
+
+*to see tables - mongo db no concept tables , we call collections tables in mongodb
+show collections;
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------
+

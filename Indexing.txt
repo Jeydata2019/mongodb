@@ -1,0 +1,54 @@
+Indexing:
+
+show dbs
+
+use emp
+
+
+show collections
+
+db.data.find({user_id:9755})
+
+* we can create an index on the table/collection to retrieve the results faster
+
+if you are selecting the data more often on top of this user id field , create
+an index to optimize your execution time:
+
+in mongodb you need to create manaully 
+
+-get the count of this collection/table 
+
+db.data.count()
+
+* let's explore what is going on when you execute this find result command
+"db.data.find({user_id:9755})"
+
+db.data.explain().find({user_id:9755})
+
+-stage" : "COLLSCAN", it is scaning the all the fields and finding the record
+
+our case we have only 5000 records, but in prodcution environment we will have 
+large number of records: eg. 5 million/billion.it is a expensive call if you
+execute a find/search result with out indexing your collection/table
+
+-- creating index for user_id field:
+
+db.data.createIndex({user_id: 1}) 
+
+
+// one is for assending order -1 dessending order
+
+let's exeucte the same command after creating the index on user_id field 
+"db.data.explain().find({user_id:9755})"
+
+db.data.explain().find({user_id:9755})
+
+stage should changed to "FECH" insetead scaning entire collection , it will 
+look for newly created index
+
+--aggrecation:
+db.data.aggregate([
+	{$group: {_id:{occupation: "$occupation"}, avgAge:{$avg: "$age"}}}
+	])
+
+

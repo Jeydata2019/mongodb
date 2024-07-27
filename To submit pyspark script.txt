@@ -1,0 +1,48 @@
+To submit pyspark script - make sure you run all below commands:
+
+
+1. we will copy emp data file in to HDFS 
+
+2. create a directory 1st mongodb 
+
+hadoop fs -mkdir /user/maria_dev/mongodb
+
+*move the emp data file from local to HDFS
+hadoop fs -copyFromLocal emp.txt /user/maria_dev/mongodb
+
+*move the pyspark script from local to HDFS
+hadoop fs -copyFromLocal mongodbpyspark4.py /user/maria_dev/mongodb
+
+*By default spark version is 1 in HDP sandbox, to execute we need to change to spark
+version 2 , run below command to change :
+3.export SPARK_MAJOR_VERSION=2
+
+*last step is submit pyspark script to load the data: run bellow command,
+important provide the pacakage:
+no change sicne we are using HDP sandbox
+replace your pyspark script file name
+
+4.spark-submit --packages org.mongodb.spark:mongo-spark-connector_2.11:2.3.2 mongodbpyspark4.py
+
+5. go to mongo cell and run below commands:
+
+*to go to mongo cell
+mongo
+
+*show databases 
+show dbs
+
+*emp is the db we created using pyspark 
+use emp
+
+*show collections(tables)
+show collections
+
+*data is the collection we careated using pyspark
+
+*lets verify some data in data collection
+  
+db.data.find ({user_id: 8605})
+
+
+----------------------------------------------------------------------------------------------------------------
