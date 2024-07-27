@@ -42,7 +42,7 @@ show collections
 
 *lets verify some data in data collection
   
-db.data.find ({user_id: 8605})
+db.data.find ({user_id: 20})
 
 
 ----------------------------------------------------------------------------------------------------------------
